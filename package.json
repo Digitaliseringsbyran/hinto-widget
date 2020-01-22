@@ -10,7 +10,7 @@
     "prettier": "prettier  \"**/*.+(js|json|ts|tsx|html|css)\"",
     "format": "npm run prettier -- --write",
     "check-format": "npm run prettier -- --list-different",
-    "validate": "npm run check-format && npm run lint && npm run build"
+    "validate": "npm-run-all --parallel check-format lint build"
   },
   "author": "Hinto",
   "license": "ISC",
@@ -24,6 +24,7 @@
     "eslint-loader": "^3.0.3",
     "husky": "^4.2.0",
     "lint-staged": "^10.0.2",
+    "npm-run-all": "^4.1.5",
     "prettier": "^1.19.1",
     "webpack": "^4.41.5",
     "webpack-cli": "^3.3.10",
