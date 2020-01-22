@@ -1,0 +1,26 @@
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<title>[DEV] Hinto</title>
+	</head>
+	<body>
+		<h1>Hinto Widget Development</h1>
+		<script>
+			;(function(window, document) {
+				var loader = function() {
+					var script = document.createElement('script')
+					var tag = document.getElementsByTagName('script')[0]
+					script.src = 'http://localhost:8080/index.js'
+					tag.parentNode.insertBefore(script, tag)
+				}
+
+				// Wait until window.onload before downloading any more code.
+				window.addEventListener
+					? window.addEventListener('load', loader, false)
+					: window.attachEvent('onload', loader)
+			})(window, document)
+		</script>
+	</body>
+</html>
