@@ -5,7 +5,12 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "NODE_ENV=production webpack",
-    "start": "webpack-dev-server"
+    "start": "webpack-dev-server",
+    "lint": "eslint './src/**/*.{js,jsx,ts,tsx,json}'",
+    "prettier": "prettier \"**/*.+(js|jsx|ts|tsx|json)\"",
+    "format": "npm run prettier -- --write",
+    "check-format": "npm run prettier -- --list-different",
+    "validate": "npm run check-format && npm run lint && npm run build"
   },
   "author": "Hinto",
   "license": "ISC",
@@ -15,7 +20,10 @@
     "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.6",
     "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.9.0",
     "eslint-loader": "^3.0.3",
+    "husky": "^4.2.0",
+    "prettier": "^1.19.1",
     "webpack": "^4.41.5",
     "webpack-cli": "^3.3.10",
     "webpack-dev-server": "^3.10.1"

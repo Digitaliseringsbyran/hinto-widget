@@ -17,7 +17,7 @@ module.exports = {
 				exclude: /node_modules/,
 				loader: 'eslint-loader',
 				options: {
-          			failOnWarning: true,
+					failOnWarning: true,
 				},
 			},
 			{
