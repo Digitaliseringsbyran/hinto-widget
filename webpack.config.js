@@ -13,17 +13,29 @@ module.exports = {
 	module: {
 		rules: [
 			{
-				test: /\.(js)$/,
+				test: /\.(js|jsx)$/,
 				exclude: /node_modules/,
-				loader: 'eslint-loader',
-				options: {
-					failOnWarning: true,
-				},
-			},
-			{
-				test: /\.(js)$/,
-				exclude: /node_modules/,
-				loader: 'babel-loader',
+				use: [
+					{
+						loader: 'babel-loader',
+						options: {
+							presets: ['@babel/preset-env'],
+							plugins: [
+								[
+									'@babel/plugin-transform-react-jsx',
+									{ pragma: 'h' },
+								],
+								'@babel/plugin-transform-runtime',
+							],
+						},
+					},
+					{
+						loader: 'eslint-loader',
+						options: {
+							failOnWarning: true,
+						},
+					},
+				],
 			},
 		],
 	},
