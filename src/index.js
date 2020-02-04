@@ -1,3 +1,6 @@
+import { h, render } from 'preact'
+import App from './app/App.js'
+
 const Hinto = {
 	init: () => {
 		if (!window.hintoSettings) {
@@ -5,7 +8,7 @@ const Hinto = {
 			return false
 		}
 
-		console.log(window.hintoSettings)
+		render(<App />, document.body)
 	},
 }
 
