@@ -8,11 +8,20 @@
 	<body>
 		<h1>Hinto Widget Development</h1>
 		<script>
+			window.hintoSettings = {
+				userId: 'david',
+			}
+		</script>
+		<script>
 			;(function(window, document) {
 				var loader = function() {
+					var callback = function() {
+						window.Hinto.init(window.hintoSettings)
+					}
 					var script = document.createElement('script')
 					var tag = document.getElementsByTagName('script')[0]
 					script.src = 'http://localhost:8080/index.js'
+					script.onload = callback
 					tag.parentNode.insertBefore(script, tag)
 				}
 

@@ -1,6 +1,11 @@
 const Hinto = {
 	init: () => {
-		console.log('init! :D')
+		if (!window.hintoSettings) {
+			console.log('Please define hintoSettings.')
+			return false
+		}
+
+		console.log(window.hintoSettings)
 	},
 }
 
