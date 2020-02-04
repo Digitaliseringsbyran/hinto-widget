@@ -12,6 +12,7 @@
     "strict": ["error", "never"],
   },
   "env": {
-    "browser": true
+    "browser": true,
+    "es6": true
   }
 }
