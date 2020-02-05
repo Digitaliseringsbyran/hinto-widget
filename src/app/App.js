@@ -38,7 +38,6 @@ const App = () => {
 	}, [index, messages])
 
 	async function mount() {
-		console.log('mount ran!')
 		// Clear state
 		dispatch({ type: 'CLEAR_STATE' })
 
