@@ -11,7 +11,7 @@ const Hinto = {
 			return
 		}
 
-		render(<App />, document.body)
+		render(<App settings={{ ...window.hintoSettings }} />, document.body)
 	},
 
 	trigger: () => {

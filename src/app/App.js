@@ -11,9 +11,11 @@ import MessageContainer from './components/MessageContainer'
 const INTERVAL = 1000
 const USER_COOLDOWN = 5000
 
-const App = () => {
-	const [state, dispatch] = useReducer(reducer, initialState)
-	const { index, messages, runInterval } = state
+const App = ({ settings }) => {
+	const [{ index, messages, runInterval }, dispatch] = useReducer(
+		reducer,
+		initialState,
+	)
 
 	useEffect(() => {
 		// Mount on page load
