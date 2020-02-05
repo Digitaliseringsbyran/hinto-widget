@@ -12,7 +12,7 @@ const MessageContainer = ({ message }) => {
 		}, 2000)
 	}, [message])
 
-	return <div>{text || 'Väntar på meddelande..'}</div>
+	return text ? <div>{text}</div> : null
 }
 
 export default MessageContainer

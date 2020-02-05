@@ -1,5 +1,6 @@
 import { h } from 'preact'
-import { useEffect, useState } from 'preact/hooks'
+import { useEffect, useReducer } from 'preact/hooks'
+import { initialState, reducer } from './reducer'
 import to from 'await-to-js'
 import { get, set } from 'lscache'
 import { useInterval } from './hooks/useInterval'
@@ -11,20 +12,28 @@ const INTERVAL = 1000
 const USER_COOLDOWN = 5000
 
 const App = () => {
-	const [messages, setMessages] = useState([])
-	const [index, setIndex] = useState(-1)
+	const [state, dispatch] = useReducer(reducer, initialState)
+	const { index, messages, runInterval } = state
 
 	// Mount on page load
 	useEffect(() => {
 		mount()
 	}, [])
 
+	// Tell reducer we have gone through all messages
+	useEffect(() => {
+		if (index === messages.length) {
+			dispatch({ type: 'ALL_MESSAGES_SHOWN' })
+		}
+	}, [index, messages])
+
 	async function mount() {
+		// Clear state
+		dispatch({ type: 'CLEAR_STATE' })
+
 		// Return if user has closed widget
 		const closed = get(CLOSED)
-		if (closed && closed === 'true') {
-			return console.log('User has closed widget, exiting')
-		}
+		if (closed && closed === 'true') return
 
 		// Request messages based on path and userId
 		const [err, res] = await to(
@@ -34,35 +43,29 @@ const App = () => {
 		)
 
 		// TODO: Do something with error
-		if (err) {
-			return
-		}
+		if (err) return
 
+		// Save messages in state if they exist and run interval
 		if (res.messages && res.messages.length) {
-			// Set interval to update index
-			useInterval(() => {
-				// Return false if messages is on cooldown
-				const cooldown = get(COOLDOWN)
-				if (cooldown && cooldown > Date.now()) {
-					return
-				}
-
-				// Set cooldown to Date.now() + user defined cooldown
-				set(COOLDOWN, Date.now() + USER_COOLDOWN)
-
-				// Update index
-				setIndex(x => x + 1)
-			}, INTERVAL)
-
-			// Save messages in state if they exist
-			return setMessages(res.messages)
-		}
-
-		// Clear message array if there are old messages in the state
-		if (messages.length) {
-			setMessages([])
+			return dispatch({
+				type: 'FETCH_MESSAGES_SUCCESS',
+				payload: res.messages,
+			})
 		}
 	}
+
+	useInterval(
+		() => {
+			// Return if messages is on cooldown
+			const cooldown = get(COOLDOWN)
+			if (cooldown && cooldown > Date.now()) return
+			// Set cooldown to Date.now() + user defined cooldown
+			set(COOLDOWN, Date.now() + USER_COOLDOWN)
+			// Set index
+			dispatch({ type: 'INTERVAL_TICK' })
+		},
+		runInterval ? INTERVAL : null,
+	)
 
 	return <MessageContainer message={messages[index]} />
 }
