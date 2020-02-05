@@ -1,6 +1,7 @@
-import { h, render } from 'preact'
+import { h, render, Fragment } from 'preact'
 import App from './app/App.js'
 import { TRIGGER } from './constants'
+import GlobalStyles from './GlobalStyles'
 
 const triggerEvent = new CustomEvent(TRIGGER)
 
@@ -12,7 +13,10 @@ const Hinto = {
 		}
 
 		render(
-			<App settings={{ ...window.hintoSettings }} />,
+			<Fragment>
+				<GlobalStyles />
+				<App settings={{ ...window.hintoSettings }} />
+			</Fragment>,
 			document.getElementById('app'),
 		)
 	},
