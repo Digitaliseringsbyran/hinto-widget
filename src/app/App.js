@@ -5,7 +5,7 @@ import to from 'await-to-js'
 import { get, set } from 'lscache'
 import { useInterval } from './hooks/useInterval'
 import { mock } from '../utils/mock'
-import { COOLDOWN, CLOSED } from '../constants'
+import { COOLDOWN, CLOSED, TRIGGER } from '../constants'
 import MessageContainer from './components/MessageContainer'
 
 const INTERVAL = 1000
@@ -15,9 +15,19 @@ const App = () => {
 	const [state, dispatch] = useReducer(reducer, initialState)
 	const { index, messages, runInterval } = state
 
-	// Mount on page load
 	useEffect(() => {
+		// Mount on page load
 		mount()
+
+		// Listen for trigger events and run mount() again
+		window.addEventListener(TRIGGER, () => {
+			mount()
+		})
+
+		// Clean up
+		return () => {
+			window.removeEventListener(TRIGGER)
+		}
 	}, [])
 
 	// Tell reducer we have gone through all messages
@@ -28,6 +38,7 @@ const App = () => {
 	}, [index, messages])
 
 	async function mount() {
+		console.log('mount ran!')
 		// Clear state
 		dispatch({ type: 'CLEAR_STATE' })
 
