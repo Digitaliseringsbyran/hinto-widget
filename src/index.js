@@ -11,7 +11,10 @@ const Hinto = {
 			return
 		}
 
-		render(<App settings={{ ...window.hintoSettings }} />, document.body)
+		render(
+			<App settings={{ ...window.hintoSettings }} />,
+			document.getElementById('app'),
+		)
 	},
 
 	trigger: () => {
