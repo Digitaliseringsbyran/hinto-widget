@@ -37,7 +37,7 @@ const App = ({ settings }) => {
 		if (index === messages.length) {
 			dispatch({ type: 'ALL_MESSAGES_SHOWN' })
 		}
-	}, [index, messages])
+	}, [index])
 
 	async function mount() {
 		// Clear state
@@ -54,7 +54,7 @@ const App = ({ settings }) => {
 			}),
 		)
 
-		// TODO: Do something with error
+		// Don't do anything if the hinto api isn't working
 		if (err) return
 
 		// Save messages in state if they exist and run interval
@@ -79,6 +79,8 @@ const App = ({ settings }) => {
 		runInterval ? INTERVAL : null,
 	)
 
+	// TODO: Create a selector to retrieve current message
+	// https://gist.github.com/fnky/7d044b94070a35e552f3c139cdf80213
 	return <MessageContainer message={messages[index]} />
 }
 
