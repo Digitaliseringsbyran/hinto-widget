@@ -1,4 +1,4 @@
-export const initialState = { runInterval: true, messages: [], index: -1 }
+export const initialState = { runInterval: false, messages: [], index: -1 }
 
 export const reducer = (state = initialState, action) => {
 	switch (action.type) {
