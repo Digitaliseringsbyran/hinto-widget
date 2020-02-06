@@ -1,15 +1,34 @@
 import { h } from 'preact'
 import { useEffect, useReducer } from 'preact/hooks'
-import { initialState, reducer } from './reducer'
+import { Provider } from 'react-redux'
+import { store } from './store'
 import to from 'await-to-js'
 import { get, set } from 'lscache'
 import { useInterval } from './hooks/useInterval'
 import { mock } from '../utils/mock'
 import { COOLDOWN, CLOSED, TRIGGER } from '../constants'
+import GlobalStyles from './styles/GlobalStyles'
 import MessageContainer from './components/MessageContainer'
 
 const INTERVAL = 1000
 const USER_COOLDOWN = 5000
+
+const initialState = { runInterval: false, messages: [], index: -1 }
+
+const reducer = (state = initialState, action) => {
+	switch (action.type) {
+		case 'FETCH_MESSAGES_SUCCESS':
+			return { ...state, messages: action.payload, runInterval: true }
+		case 'INTERVAL_TICK':
+			return { ...state, index: state.index + 1 }
+		case 'ALL_MESSAGES_SHOWN':
+			return { ...state, runInterval: false }
+		case 'CLEAR_STATE':
+			return initialState
+		default:
+			return state
+	}
+}
 
 const App = ({ settings }) => {
 	const [{ index, messages, runInterval }, dispatch] = useReducer(
@@ -81,7 +100,12 @@ const App = ({ settings }) => {
 
 	// TODO: Create a selector to retrieve current message
 	// https://gist.github.com/fnky/7d044b94070a35e552f3c139cdf80213
-	return <MessageContainer message={messages[index]} />
+	return (
+		<Provider store={store}>
+			<GlobalStyles />
+			<MessageContainer message={messages[index]} />
+		</Provider>
+	)
 }
 
 export default App

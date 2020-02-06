@@ -1,6 +1,6 @@
 export const initialState = { runInterval: false, messages: [], index: -1 }
 
-export const reducer = (state = initialState, action) => {
+export default (state = initialState, action) => {
 	switch (action.type) {
 		case 'FETCH_MESSAGES_SUCCESS':
 			return { ...state, messages: action.payload, runInterval: true }
