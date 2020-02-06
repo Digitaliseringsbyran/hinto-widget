@@ -11,12 +11,16 @@ const Hinto = {
 			return
 		}
 
-		// TODO: Dynamically create div to mount on
+		// Create element for App to mount on
+		const root = document.createElement('div')
+		root.setAttribute('id', 'hinto-widget')
 
-		render(
-			<App settings={{ ...window.hintoSettings }} />,
-			document.getElementById('app'),
-		)
+		// Append root before closing body tag
+		// TODO: How to handle non-existing body tags?
+		if (document.body) {
+			document.body.appendChild(root)
+			render(<App settings={{ ...window.hintoSettings }} />, root)
+		}
 	},
 
 	trigger: () => {

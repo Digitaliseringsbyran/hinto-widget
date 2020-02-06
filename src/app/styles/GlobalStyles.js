@@ -1,7 +1,7 @@
 import { createGlobalStyle } from 'styled-components'
 
 const GlobalStyles = createGlobalStyle`
-	#app {
+	#hinto-widget {
 		position: fixed;
 		left: 0;
 		bottom: 0;
