@@ -1,7 +1,7 @@
 import { h, render, Fragment } from 'preact'
-import App from './app/App.js'
 import { TRIGGER } from './constants'
-import GlobalStyles from './GlobalStyles'
+import App from './app/App.js'
+import GlobalStyles from './app/styles/GlobalStyles'
 
 const triggerEvent = new CustomEvent(TRIGGER)
 
