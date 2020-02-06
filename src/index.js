@@ -11,6 +11,8 @@ const Hinto = {
 			return
 		}
 
+		// TODO: Dynamically create div to mount on
+
 		render(
 			<App settings={{ ...window.hintoSettings }} />,
 			document.getElementById('app'),
