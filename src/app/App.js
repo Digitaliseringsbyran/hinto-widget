@@ -1,7 +1,8 @@
 import { h } from 'preact'
 import { useEffect, useReducer } from 'preact/hooks'
 import { Provider } from 'react-redux'
-import { store } from './store'
+import { PersistGate } from 'redux-persist/integration/react'
+import { store, persistor } from './store'
 import to from 'await-to-js'
 import { get, set } from 'lscache'
 import { useInterval } from './hooks/useInterval'
@@ -102,8 +103,10 @@ const App = ({ settings }) => {
 	// https://gist.github.com/fnky/7d044b94070a35e552f3c139cdf80213
 	return (
 		<Provider store={store}>
-			<GlobalStyles />
-			<MessageContainer message={messages[index]} />
+			<PersistGate loading={null} persistor={persistor}>
+				<GlobalStyles />
+				<MessageContainer message={messages[index]} />
+			</PersistGate>
 		</Provider>
 	)
 }
