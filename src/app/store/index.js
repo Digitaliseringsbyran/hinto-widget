@@ -6,6 +6,7 @@ import reducers from '../reducers'
 const persistConfig = {
 	key: 'hinto-widget',
 	storage,
+	whitelist: ['closed', 'cooldown'],
 }
 
 const persistedReducer = persistReducer(persistConfig, reducers)
