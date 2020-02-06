@@ -1,6 +1,6 @@
 import { h, render } from 'preact'
 import { TRIGGER } from './constants'
-import App from './app/App.js'
+import AppContainer from './app/AppContainer'
 
 const triggerEvent = new CustomEvent(TRIGGER)
 
@@ -19,7 +19,10 @@ const Hinto = {
 		// TODO: How to handle non-existing body tags?
 		if (document.body) {
 			document.body.appendChild(root)
-			render(<App settings={{ ...window.hintoSettings }} />, root)
+			render(
+				<AppContainer settings={{ ...window.hintoSettings }} />,
+				root,
+			)
 		}
 	},
 
