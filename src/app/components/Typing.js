@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import TypingIndicator from './TypingIndicator'
 import Avatar from './Avatar'
 
-const Typing = ({ onEnd, role, title, color }) => {
+const Typing = ({ onEnd, role, title, color, running }) => {
 	useEffect(() => {
 		const timeout = setTimeout(() => {
 			onEnd()
@@ -18,7 +18,7 @@ const Typing = ({ onEnd, role, title, color }) => {
 
 	return (
 		<TypingContainer>
-			<Avatar role={role} title={title} color={color} />
+			<Avatar role={role} title={title} color={color} running={running} />
 			<TypingIndicator />
 		</TypingContainer>
 	)
