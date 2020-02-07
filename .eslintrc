@@ -10,7 +10,8 @@
   "extends": ["eslint:recommended", "standard", "standard-preact", "eslint-config-prettier"],
   "rules": {
     "strict": ["error", "never"],
-    "react/jsx-indent": ["error", "tab"]
+    "react/jsx-indent": ["error", "tab"],
+    "react/jsx-indent-props": ["error", "tab"]
   },
   "env": {
     "browser": true,
