@@ -6,19 +6,14 @@ import { useInterval } from './hooks/useInterval'
 import { mock } from '../utils/mock'
 import MessageContainer from './components/MessageContainer'
 import { TRIGGER } from '../constants'
-import {
-	CLEAR_STATE,
-	FETCH_MESSAGES_SUCCESS,
-	INTERVAL_TICK,
-	ALL_MESSAGES_SHOWN,
-} from './actions'
+import { CLEAR_STATE, FETCH_MESSAGES_SUCCESS, INTERVAL_TICK } from './actions'
 
 const App = ({ opts }) => {
 	const dispatch = useDispatch()
-	const { index, messages, closed, cooldown, runInterval } = useSelector(
-		state => state,
-	)
-	const currentMessage = useSelector(state => state.messages[state.index])
+	const { closed, cooldown, runInterval } = useSelector(state => state)
+
+	const time = new Date()
+	time.setSeconds(time.getSeconds() + 10) // 10 seconds timer
 
 	useEffect(() => {
 		// Mount on page load
@@ -32,13 +27,6 @@ const App = ({ opts }) => {
 			window.removeEventListener(TRIGGER)
 		}
 	}, [])
-
-	// Tell reducer we have gone through all messages
-	useEffect(() => {
-		if (index === messages.length) {
-			dispatch({ type: ALL_MESSAGES_SHOWN })
-		}
-	}, [index])
 
 	async function mount() {
 		// Clear state
@@ -64,15 +52,18 @@ const App = ({ opts }) => {
 
 	useInterval(
 		() => {
-			// Return if messages is on cooldown
-			if (cooldown && cooldown > Date.now()) return
+			// Messages are on cooldown, do nothing and keep ticking
+			if (cooldown && cooldown > Date.now()) {
+				return
+			}
+
 			// Dispatch interval tick
 			dispatch({ type: INTERVAL_TICK })
 		},
 		runInterval ? 1000 : null,
 	)
 
-	return <MessageContainer message={currentMessage} />
+	return <MessageContainer time={time} />
 }
 
 export default App

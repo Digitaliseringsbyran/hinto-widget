@@ -1,7 +1,50 @@
 import { h } from 'preact'
+import { useEffect, useState } from 'preact/hooks'
+import { useSelector, useDispatch } from 'react-redux'
+import styled from 'styled-components'
+import { MESSAGE_UNMOUNT } from '../actions'
+import Typing from './Typing'
+import Message from './Message'
 
 const MessageContainer = () => {
-	return <div>MessageContainer</div>
+	const dispatch = useDispatch()
+	const message = useSelector(state => state.messages[state.index])
+	const [showTyping, setShowTyping] = useState(false)
+	const [showMessage, setShowMessage] = useState(false)
+
+	useEffect(() => {
+		// Do nothing if there is no message
+		if (!message) return
+		// Mount Typing
+		setShowTyping(true)
+	}, [message])
+
+	const typingEnd = () => {
+		setShowTyping(false)
+		setShowMessage(true)
+	}
+
+	const messageEnd = () => {
+		setShowMessage(false)
+		dispatch({ type: MESSAGE_UNMOUNT })
+	}
+
+	if (!message) {
+		return null
+	}
+
+	return (
+		<Container>
+			{showTyping && <Typing onEnd={typingEnd} />}
+			{showMessage && <Message onEnd={messageEnd} />}
+		</Container>
+	)
 }
+
+const Container = styled.div`
+	border: 20px solid orange;
+	margin-bottom: 2rem;
+	margin-left: 2rem;
+`
 
 export default MessageContainer

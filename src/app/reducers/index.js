@@ -2,28 +2,25 @@ import {
 	CLEAR_STATE,
 	FETCH_MESSAGES_SUCCESS,
 	INTERVAL_TICK,
-	ALL_MESSAGES_SHOWN,
+	MESSAGE_UNMOUNT,
 } from '../actions'
 
 export const initialState = {
 	runInterval: false,
 	messages: [],
-	index: -1,
+	index: null,
 	closed: false,
 }
 
 export default (state = initialState, action) => {
 	switch (action.type) {
 		case FETCH_MESSAGES_SUCCESS:
-			return { ...state, messages: action.payload, runInterval: true }
+			return { ...state, messages: action.payload, index: 0 }
 		case INTERVAL_TICK:
-			return {
-				...state,
-				index: state.index + 1,
-				cooldown: Date.now() + 5000,
-			}
-		case ALL_MESSAGES_SHOWN:
-			return { ...state, runInterval: false }
+			return { ...state, index: state.index + 1, runInterval: false }
+		case MESSAGE_UNMOUNT: {
+			return { ...state, runInterval: true, cooldown: Date.now() + 5000 }
+		}
 		case CLEAR_STATE:
 			return initialState
 		default:
