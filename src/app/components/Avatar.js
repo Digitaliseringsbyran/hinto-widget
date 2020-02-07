@@ -5,7 +5,17 @@ import styled from 'styled-components'
 import AvatarIndicator from './AvatarIndicator'
 import TypingIndicator from './TypingIndicator'
 
-const Avatar = ({ color, title, role, typing, running, delay, onEnd }) => {
+const Avatar = ({
+	color,
+	title,
+	role,
+	typing,
+	running,
+	delay,
+	onEnd,
+	size,
+	stroke,
+}) => {
 	useEffect(() => {
 		let timeout
 
@@ -28,7 +38,13 @@ const Avatar = ({ color, title, role, typing, running, delay, onEnd }) => {
 
 	return (
 		<Container>
-			<AvatarIndicator color={color} running={running} delay={delay} />
+			<AvatarIndicator
+				size={size}
+				stroke={stroke}
+				color={color}
+				running={running}
+				delay={delay}
+			/>
 			<AvatarTitle>{title}</AvatarTitle>
 			<AvatarRole>{role}</AvatarRole>
 			{typing && <TypingIndicator />}
@@ -43,13 +59,13 @@ const Container = styled.div`
 
 const AvatarTitle = styled.span`
 	font-weight: bold;
-	font-size: 15px;
+	font-size: 14px;
 	margin-left: 6px;
 `
 
 const AvatarRole = styled.span`
 	font-weight: normal;
-	font-size: 15px;
+	font-size: 14px;
 	margin-left: 4px;
 	margin-right: 10px;
 `
