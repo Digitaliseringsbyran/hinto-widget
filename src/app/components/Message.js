@@ -5,7 +5,7 @@ import Avatar from './Avatar'
 
 const DELAY = 5000
 
-const Message = ({ onEnd }) => {
+const Message = ({ onEnd, text }) => {
 	const [pause, run, running] = usePausableTimeout(
 		() => {
 			onEnd()
@@ -17,7 +17,7 @@ const Message = ({ onEnd }) => {
 	return (
 		<Container>
 			<Avatar running={running} delay={DELAY} />
-			<div>A very cool Message</div>
+			<div>{text}</div>
 			<div>
 				<button onClick={run}>run</button>
 				<button onClick={pause}>pause</button>
@@ -33,6 +33,8 @@ const Container = styled.div`
 	border: 1px solid rgba(0, 0, 0, 0.04);
 	box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.04), 0px 4px 8px rgba(0, 0, 0, 0.04),
 		0px 16px 24px rgba(0, 0, 0, 0.04), 0px 24px 32px rgba(0, 0, 0, 0.04);
+
+	max-width: 320px;
 `
 
 export default Message
