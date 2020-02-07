@@ -1,7 +1,11 @@
 import { h } from 'preact'
 import { useEffect } from 'preact/hooks'
+import styled from 'styled-components'
 
-const Typing = ({ onEnd }) => {
+import TypingIndicator from './TypingIndicator'
+import Avatar from './Avatar'
+
+const Typing = ({ onEnd, role, title, color }) => {
 	useEffect(() => {
 		const timeout = setTimeout(() => {
 			onEnd()
@@ -12,7 +16,17 @@ const Typing = ({ onEnd }) => {
 		}
 	}, [])
 
-	return <div>typing...</div>
+	return (
+		<TypingContainer>
+			<Avatar role={role} title={title} color={color} />
+			<TypingIndicator />
+		</TypingContainer>
+	)
 }
+
+const TypingContainer = styled.div`
+	display: inline-flex;
+	align-items: center;
+`
 
 export default Typing

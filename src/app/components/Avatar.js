@@ -1,9 +1,7 @@
 import { h } from 'preact'
 import styled, { keyframes } from 'styled-components'
 
-import TypingIndicator from './TypingIndicator'
-
-const Avatar = ({ color, progress, title, running }) => {
+const Avatar = ({ color, title, role, running }) => {
 	return (
 		<AvatarContainer>
 			<AvatarProfile
@@ -13,20 +11,12 @@ const Avatar = ({ color, progress, title, running }) => {
 				running={running}
 			/>
 			<AvatarTitle>{title}</AvatarTitle>
-			<AvatarRole>Assistant</AvatarRole>
-			<TypingIndicator />
+			<AvatarRole>{role}</AvatarRole>
 		</AvatarContainer>
 	)
 }
 
-const AvatarProfile = ({
-	radius,
-	stroke,
-	progress,
-	color,
-	running,
-	...props
-}) => {
+const AvatarProfile = ({ radius, stroke, color, running, ...props }) => {
 	const normalizedRadius = radius - stroke * 2
 	const circumference = normalizedRadius * 2 * Math.PI
 	return (
