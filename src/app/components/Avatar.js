@@ -101,8 +101,8 @@ const ProgressContainer = styled.svg`
 
 const ProgressCircle = styled.circle`
 	animation: ${props => timer(props.offset)} linear
-		${props => props.delay / 1000}s;
-	${props => (props.running ? 'running' : 'paused')};
+		${props => props.delay / 1000}s
+		${props => (props.running ? 'running' : 'paused')};
 	transition: stroke-dashoffset 0.35s;
 	transform: rotate(-90deg);
 	transform-origin: 50% 50%;

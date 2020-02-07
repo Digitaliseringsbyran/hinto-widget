@@ -1,11 +1,12 @@
 import { h } from 'preact'
 import styled from 'styled-components'
 import { usePausableTimeout } from '../hooks/usePausableTimeout'
+import Avatar from './Avatar'
 
 const DELAY = 5000
 
 const Message = ({ onEnd }) => {
-	const [pause, run] = usePausableTimeout(
+	const [pause, run, running] = usePausableTimeout(
 		() => {
 			onEnd()
 		},
@@ -15,6 +16,7 @@ const Message = ({ onEnd }) => {
 
 	return (
 		<Container>
+			<Avatar running={running} delay={DELAY} />
 			<div>A very cool Message</div>
 			<div>
 				<button onClick={run}>run</button>

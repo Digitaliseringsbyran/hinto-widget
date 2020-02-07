@@ -42,7 +42,7 @@ const MessageContainer = () => {
 }
 
 const Container = styled.div`
-	border: 20px solid orange;
+	border: 1px solid;
 	margin-bottom: 2rem;
 	margin-left: 2rem;
 `
