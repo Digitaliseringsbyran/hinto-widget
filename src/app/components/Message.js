@@ -15,13 +15,9 @@ const Message = ({ onEnd }) => {
 	)
 
 	return (
-		<Container>
+		<Container onMouseEnter={pause} onMouseLeave={run}>
 			<Avatar running={running} delay={DELAY} />
 			<div>A very cool Message</div>
-			<div>
-				<button onClick={run}>run</button>
-				<button onClick={pause}>pause</button>
-			</div>
 		</Container>
 	)
 }
