@@ -16,15 +16,41 @@ const Message = ({ onEnd, text, role, title, color }) => {
 
 	return (
 		<Container onMouseEnter={pause} onMouseLeave={run}>
-			<Avatar
-				size={16}
-				stroke={2}
-				running={running}
-				delay={DELAY}
-				role={role}
-				title={title}
-				color={color}
-			/>
+			<MessageHeader>
+				<Avatar
+					size={16}
+					stroke={2}
+					running={running}
+					delay={DELAY}
+					role={role}
+					title={title}
+					color={color}
+				/>
+				<CloseButton>
+					<svg
+						width="24"
+						height="24"
+						viewBox="0 0 16 16"
+						fill="none"
+						xmlns="http://www.w3.org/2000/svg"
+					>
+						<path
+							d="M3 13L13 3"
+							stroke="#9C9CA5"
+							stroke-width="0.875"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+						/>
+						<path
+							d="M3 3L13 13"
+							stroke="#9C9CA5"
+							stroke-width="0.875"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+						/>
+					</svg>
+				</CloseButton>
+			</MessageHeader>
 			<TextContainer>{text}</TextContainer>
 		</Container>
 	)
@@ -39,6 +65,33 @@ const Container = styled.div`
 		0px 16px 24px rgba(0, 0, 0, 0.04), 0px 24px 32px rgba(0, 0, 0, 0.04);
 
 	max-width: 320px;
+`
+
+const CloseButton = styled.button`
+	height: 26px;
+	width: 26px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 3px;
+	outline: none;
+	border: none;
+	background: none;
+	text-decoration: none;
+	font-family: 'hinto-apercu';
+	appearance: none;
+	cursor: pointer;
+	transition: background 0.2s;
+
+	&:hover {
+		background: #f5f5f9;
+	}
+`
+
+const MessageHeader = styled.div`
+	justify-content: space-between;
+	align-items: center;
+	display: flex;
 `
 
 const TextContainer = styled.div`
