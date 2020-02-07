@@ -14,6 +14,12 @@ module.exports = {
 	module: {
 		rules: [
 			{
+				test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+				use: {
+					loader: 'url-loader',
+				},
+			},
+			{
 				test: /\.(js|jsx)$/,
 				exclude: /node_modules/,
 				use: [
