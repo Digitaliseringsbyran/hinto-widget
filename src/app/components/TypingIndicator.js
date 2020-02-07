@@ -11,7 +11,7 @@ const TypingIndicator = () => {
 	)
 }
 
-const Bounce = keyframes`
+const bounce = keyframes`
   from {
     transform: translateY(0px);
     opacity:1;
@@ -34,7 +34,7 @@ const Circle = styled.div`
 	display: inline-block;
 	background: black;
 	border-radius: 50%;
-	animation: ${Bounce} 0.85s cubic-bezier(0.645, 0.045, 0.355, 1) infinite
+	animation: ${bounce} 0.85s cubic-bezier(0.645, 0.045, 0.355, 1) infinite
 		alternate;
 	animation-delay: ${props => props.delay};
 `

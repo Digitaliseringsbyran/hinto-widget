@@ -1,14 +1,37 @@
 import { h } from 'preact'
+import { useEffect } from 'preact/hooks'
 import styled from 'styled-components'
 
 import AvatarIndicator from './AvatarIndicator'
+import TypingIndicator from './TypingIndicator'
 
-const Avatar = ({ color, title, role, running, delay }) => {
+const Avatar = ({ color, title, role, typing, running, delay, onEnd }) => {
+	useEffect(() => {
+		let timeout
+
+		const mount = () => {
+			if (!onEnd) {
+				return
+			}
+
+			timeout = setTimeout(() => {
+				onEnd()
+			}, 2000)
+		}
+
+		mount()
+
+		return () => {
+			clearTimeout(timeout)
+		}
+	}, [])
+
 	return (
 		<Container>
 			<AvatarIndicator color={color} running={running} delay={delay} />
 			<AvatarTitle>{title}</AvatarTitle>
 			<AvatarRole>{role}</AvatarRole>
+			{typing && <TypingIndicator />}
 		</Container>
 	)
 }

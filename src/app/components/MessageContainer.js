@@ -3,7 +3,7 @@ import { useEffect, useState } from 'preact/hooks'
 import { useSelector, useDispatch } from 'react-redux'
 import styled from 'styled-components'
 import { MESSAGE_UNMOUNT } from '../actions'
-import Typing from './Typing'
+import Avatar from './Avatar'
 import Message from './Message'
 
 const MessageContainer = () => {
@@ -35,7 +35,7 @@ const MessageContainer = () => {
 
 	return (
 		<Container>
-			{showTyping && <Typing onEnd={typingEnd} />}
+			{showTyping && <Avatar onEnd={typingEnd} typing />}
 			{showMessage && <Message onEnd={messageEnd} />}
 		</Container>
 	)

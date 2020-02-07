@@ -6,4 +6,8 @@ export default { title: 'Message' }
 const text =
 	'Hörrudu! Visste du att vi skickar ditt paket idag om du beställer inom 2 timmar?'
 
-export const withText = () => <Message text={text} />
+const handleOnEnd = () => {
+	console.log('Message onEnd')
+}
+
+export const withText = () => <Message text={text} onEnd={handleOnEnd} />
