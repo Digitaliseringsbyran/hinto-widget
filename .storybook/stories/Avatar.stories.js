@@ -9,6 +9,7 @@ const title = 'HAYDAY'
 const role = 'Assistant'
 const brandColor = '#EBE5D7'
 const running = true
+const delay = 5000
 
 export const withText = () => (
 	<Avatar
@@ -16,5 +17,6 @@ export const withText = () => (
 		role={text('role', role)}
 		color={color('color', brandColor)}
 		running={boolean('running', running)}
+		delay={number('delay', delay)}
 	/>
 )

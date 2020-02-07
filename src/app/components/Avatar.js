@@ -1,7 +1,7 @@
 import { h } from 'preact'
 import styled, { keyframes } from 'styled-components'
 
-const Avatar = ({ color, title, role, running }) => {
+const Avatar = ({ color, title, role, running, delay }) => {
 	return (
 		<AvatarContainer>
 			<AvatarProfile
@@ -9,6 +9,7 @@ const Avatar = ({ color, title, role, running }) => {
 				radius={20}
 				stroke={3}
 				running={running}
+				delay={delay}
 			/>
 			<AvatarTitle>{title}</AvatarTitle>
 			<AvatarRole>{role}</AvatarRole>
@@ -16,7 +17,7 @@ const Avatar = ({ color, title, role, running }) => {
 	)
 }
 
-const AvatarProfile = ({ radius, stroke, color, running, ...props }) => {
+const AvatarProfile = ({ radius, stroke, color, running, delay, ...props }) => {
 	const normalizedRadius = radius - stroke * 2
 	const circumference = normalizedRadius * 2 * Math.PI
 	return (
@@ -34,6 +35,7 @@ const AvatarProfile = ({ radius, stroke, color, running, ...props }) => {
 			<ProgressContainer height={radius * 2} width={radius * 2}>
 				<ProgressCircle
 					running={running}
+					delay={delay}
 					fill="transparent"
 					strokeWidth={stroke}
 					offset={circumference}
@@ -98,8 +100,9 @@ const ProgressContainer = styled.svg`
 `
 
 const ProgressCircle = styled.circle`
-	animation: ${props => timer(props.offset)} linear 5s
-		${props => (props.running ? 'running' : 'paused')};
+	animation: ${props => timer(props.offset)} linear
+		${props => props.delay / 1000}s;
+	${props => (props.running ? 'running' : 'paused')};
 	transition: stroke-dashoffset 0.35s;
 	transform: rotate(-90deg);
 	transform-origin: 50% 50%;
