@@ -10,10 +10,9 @@ import { CLEAR_STATE, FETCH_MESSAGES_SUCCESS, INTERVAL_TICK } from './actions'
 
 const App = ({ opts }) => {
 	const dispatch = useDispatch()
-	const { closed, cooldown, runInterval } = useSelector(state => state)
-
-	const time = new Date()
-	time.setSeconds(time.getSeconds() + 10) // 10 seconds timer
+	const { closed, cooldown, runInterval, messages } = useSelector(
+		state => state,
+	)
 
 	useEffect(() => {
 		// Mount on page load
@@ -63,7 +62,12 @@ const App = ({ opts }) => {
 		runInterval ? 1000 : null,
 	)
 
-	return <MessageContainer time={time} />
+	// Return null if there are no messages
+	if (!messages.length) {
+		return null
+	}
+
+	return <MessageContainer />
 }
 
 export default App
