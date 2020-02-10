@@ -14,15 +14,15 @@ const MessageContainer = () => {
 	const [showMessage, setShowMessage] = useState(false)
 
 	const avatarTransition = useTransition(showTyping, null, {
-		from: { opacity: 0, transform: 'translateY(50px)' },
-		enter: { opacity: 1, transform: 'translateY(0px)' },
-		leave: { opacity: 0, transform: 'translateY(-50px)' },
+		from: { opacity: 0, transform: 'translateY(100px) rotateX(-20deg)' },
+		enter: { opacity: 1, transform: 'translateY(0px) rotateX(0deg)' },
+		leave: { opacity: 0, transform: 'translateY(-75px) rotateX(20deg)' },
 	})
 
 	const messageTransition = useTransition(showMessage, null, {
-		from: { opacity: 0, transform: 'translateY(50px)' },
-		enter: { opacity: 1, transform: 'translateY(0px)' },
-		leave: { opacity: 0, transform: 'translateY(50px)' },
+		from: { opacity: 0, transform: 'translateY(100px) rotateX(-20deg)' },
+		enter: { opacity: 1, transform: 'translateY(0px) rotateX(0deg)' },
+		leave: { opacity: 0, transform: 'translateY(60px) rotateX(-20deg)' },
 	})
 
 	useEffect(() => {
@@ -53,7 +53,7 @@ const MessageContainer = () => {
 					item && (
 						<AnimatedContainer key={key} style={props}>
 							<Avatar
-								title="HAYDAY"
+								title="HAY"
 								role="Assistant"
 								color="#EBE5D7"
 								onEnd={typingEnd}
@@ -67,7 +67,7 @@ const MessageContainer = () => {
 					item && (
 						<AnimatedContainer key={key} style={props}>
 							<Message
-								title="HAYDAY"
+								title="HAY"
 								role="Assistant"
 								color="#EBE5D7"
 								text={message}

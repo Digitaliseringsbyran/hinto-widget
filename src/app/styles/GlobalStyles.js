@@ -36,6 +36,7 @@ const GlobalStyles = createGlobalStyle`
 		font-family: 'hinto-apercu' !important;
 		left: 0;
 		bottom: 0;
+		perspective: 999px; 
 		width: 100vw;
 		@media screen and (min-width: 400px) {
 			width:320px;
