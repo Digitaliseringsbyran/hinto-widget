@@ -1,10 +1,7 @@
 import { createGlobalStyle } from 'styled-components'
-import ApercuRegularWoffTwo from '../../assets/fonts/apercu-regular.woff2'
-import ApercuRegularWoff from '../../assets/fonts/apercu-regular.woff'
-import ApercuMediumWoffTwo from '../../assets/fonts/apercu-medium.woff2'
-import ApercuMediumWoff from '../../assets/fonts/apercu-medium.woff'
-import ApercuBoldWoffTwo from '../../assets/fonts/apercu-bold.woff2'
-import ApercuBoldWoff from '../../assets/fonts/apercu-bold.woff'
+import ApercuRegularWoff from '../../assets/fonts/Apercu.woff'
+import ApercuMediumWoff from '../../assets/fonts/Apercu-Medium.woff'
+import ApercuBoldWoff from '../../assets/fonts/Apercu-Bold.woff'
 
 const GlobalStyles = createGlobalStyle`
 	// Normal
@@ -13,7 +10,6 @@ const GlobalStyles = createGlobalStyle`
 		font-style: normal;
 		font-weight: 400;
 		src: 
-			url('${ApercuRegularWoffTwo}') format('woff2'), 
 			url('${ApercuRegularWoff}') format('woff');
 	}
 
@@ -23,7 +19,6 @@ const GlobalStyles = createGlobalStyle`
 		font-style: normal;
 		font-weight: 500;
 		src: 
-			url('${ApercuMediumWoffTwo}') format('woff2'), 
 			url('${ApercuMediumWoff}') format('woff');
 	}
 	
@@ -33,7 +28,6 @@ const GlobalStyles = createGlobalStyle`
 		font-style: normal;
 		font-weight: 700;
 		src: 
-			url('${ApercuBoldWoffTwo}') format('woff2'), 
 			url('${ApercuBoldWoff}') format('woff');
 	}
 
