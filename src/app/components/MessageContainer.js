@@ -70,7 +70,7 @@ const MessageContainer = () => {
 								title="HAYDAY"
 								role="Assistant"
 								color="#EBE5D7"
-								text={message}
+								text={message.text}
 								onEnd={messageEnd}
 							/>
 						</AnimatedContainer>
