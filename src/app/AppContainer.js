@@ -9,7 +9,7 @@ const AppContainer = ({ opts }) => (
 	<Provider store={store}>
 		<PersistGate loading={null} persistor={persistor}>
 			<GlobalStyles />
-			<App opts={{ ...opts }} />
+			<App {...opts} />
 		</PersistGate>
 	</Provider>
 )
