@@ -7,9 +7,8 @@ import MessageContainer from './components/MessageContainer'
 import { TRIGGER } from '../constants'
 import { CLEAR_STATE, FETCH_MESSAGES_SUCCESS, INTERVAL_TICK } from './actions'
 
-const userId = 'lvlUfLPGJZO72Q8Gz2fX9kzwL202'
-
 const App = ({ opts }) => {
+	const { userId } = opts
 	const dispatch = useDispatch()
 	const { closed, cooldown, runInterval, messages } = useSelector(
 		state => state,
@@ -32,10 +31,10 @@ const App = ({ opts }) => {
 		// Clear state
 		dispatch({ type: CLEAR_STATE })
 		// Return if user has closed widget
-		if (closed) return
+		if (closed || !userId) return
 		// Request messages based on path and userId
 		const response = await fetch(
-			`${process.env.API_URL}/messages/${userId}?path=/collections/mens/products/nassjo-t-shirt`,
+			`${process.env.API_URL}/messages/${userId}?path=${window.location.pathname}`,
 		)
 
 		// Don't do anything if the hinto api isn't working
