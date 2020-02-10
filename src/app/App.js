@@ -26,8 +26,6 @@ const App = ({ userId }) => {
 		}
 	}, [])
 
-	console.log(userId)
-
 	async function mount() {
 		// Clear state
 		dispatch({ type: CLEAR_STATE })
