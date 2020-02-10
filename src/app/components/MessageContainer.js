@@ -84,13 +84,14 @@ const AnimatedContainer = styled(animated.div)`
 	position: absolute;
 	bottom: 0;
 	left: 0;
+	padding: 16px;
 	width: 100%;
+	@media screen and (min-width: 400px) {
+		padding: 24px;
+	}
 `
 
 const Container = styled.div`
-	margin-bottom: 2rem;
-	margin-left: 2rem;
-	width: 320px;
 	position: relative;
 `
 
