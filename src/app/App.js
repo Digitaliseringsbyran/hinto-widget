@@ -1,12 +1,13 @@
+import 'whatwg-fetch'
 import { h } from 'preact'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'preact/hooks'
-import to from 'await-to-js'
 import { useInterval } from './hooks/useInterval'
-import { mock } from '../utils/mock'
 import MessageContainer from './components/MessageContainer'
 import { TRIGGER } from '../constants'
 import { CLEAR_STATE, FETCH_MESSAGES_SUCCESS, INTERVAL_TICK } from './actions'
+
+const userId = 'lvlUfLPGJZO72Q8Gz2fX9kzwL202'
 
 const App = ({ opts }) => {
 	const dispatch = useDispatch()
@@ -33,13 +34,17 @@ const App = ({ opts }) => {
 		// Return if user has closed widget
 		if (closed) return
 		// Request messages based on path and userId
-		const [err, res] = await to(
-			mock(true, 1000, {
-				messages: ['10 personer', '20 personer'],
-			}),
+		const response = await fetch(
+			`${process.env.API_URL}/messages/${userId}?path=/collections/mens/products/nassjo-t-shirt`,
 		)
+
 		// Don't do anything if the hinto api isn't working
-		if (err) return
+		if (!response.ok) {
+			return
+		}
+
+		const res = await response.json()
+
 		// Save messages in state if they exist and run interval
 		if (res.messages && res.messages.length) {
 			return dispatch({
