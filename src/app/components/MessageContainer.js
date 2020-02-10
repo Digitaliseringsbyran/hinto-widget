@@ -14,15 +14,15 @@ const MessageContainer = () => {
 	const [showMessage, setShowMessage] = useState(false)
 
 	const avatarTransition = useTransition(showTyping, null, {
-		from: { position: 'absolute', opacity: 0 },
-		enter: { opacity: 1 },
-		leave: { opacity: 0 },
+		from: { opacity: 0, transform: 'translateY(50px)' },
+		enter: { opacity: 1, transform: 'translateY(0px)' },
+		leave: { opacity: 0, transform: 'translateY(-50px)' },
 	})
 
 	const messageTransition = useTransition(showMessage, null, {
-		from: { position: 'absolute', opacity: 0 },
-		enter: { opacity: 1 },
-		leave: { opacity: 0 },
+		from: { opacity: 0, transform: 'translateY(50px)' },
+		enter: { opacity: 1, transform: 'translateY(0px)' },
+		leave: { opacity: 0, transform: 'translateY(50px)' },
 	})
 
 	useEffect(() => {
@@ -51,27 +51,47 @@ const MessageContainer = () => {
 			{avatarTransition.map(
 				({ item, key, props }) =>
 					item && (
-						<animated.div key={key} style={props}>
-							<Avatar onEnd={typingEnd} typing />
-						</animated.div>
+						<AnimatedContainer key={key} style={props}>
+							<Avatar
+								title="HAYDAY"
+								role="Assistant"
+								color="#EBE5D7"
+								onEnd={typingEnd}
+								typing
+							/>
+						</AnimatedContainer>
 					),
 			)}
 			{messageTransition.map(
 				({ item, key, props }) =>
 					item && (
-						<animated.div key={key} style={props}>
-							<Message onEnd={messageEnd} />
-						</animated.div>
+						<AnimatedContainer key={key} style={props}>
+							<Message
+								title="HAYDAY"
+								role="Assistant"
+								color="#EBE5D7"
+								text={message}
+								onEnd={messageEnd}
+							/>
+						</AnimatedContainer>
 					),
 			)}
 		</Container>
 	)
 }
 
+const AnimatedContainer = styled(animated.div)`
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+`
+
 const Container = styled.div`
-	border: 1px solid;
 	margin-bottom: 2rem;
 	margin-left: 2rem;
+	width: 320px;
+	position: relative;
 `
 
 export default MessageContainer

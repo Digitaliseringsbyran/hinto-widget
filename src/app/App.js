@@ -35,7 +35,10 @@ const App = ({ opts }) => {
 		// Request messages based on path and userId
 		const [err, res] = await to(
 			mock(true, 1000, {
-				messages: ['10 personer', '20 personer'],
+				messages: [
+					'Du är inte ensam! Den här produkten har köpts 15 gånger de senaste veckorna',
+					'Du är inte ensam! Den här produkten har köpts 8 gånger de senaste veckorna',
+				],
 			}),
 		)
 		// Don't do anything if the hinto api isn't working
