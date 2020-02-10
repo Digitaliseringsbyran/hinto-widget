@@ -7,8 +7,7 @@ import MessageContainer from './components/MessageContainer'
 import { TRIGGER } from '../constants'
 import { CLEAR_STATE, FETCH_MESSAGES_SUCCESS, INTERVAL_TICK } from './actions'
 
-const App = ({ opts }) => {
-	const { userId } = opts
+const App = ({ userId }) => {
 	const dispatch = useDispatch()
 	const { closed, cooldown, runInterval, messages } = useSelector(
 		state => state,
@@ -26,6 +25,8 @@ const App = ({ opts }) => {
 			window.removeEventListener(TRIGGER)
 		}
 	}, [])
+
+	console.log(userId)
 
 	async function mount() {
 		// Clear state

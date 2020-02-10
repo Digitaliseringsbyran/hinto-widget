@@ -19,10 +19,7 @@ const Hinto = {
 		// TODO: How to handle non-existing body tags?
 		if (document.body) {
 			document.body.appendChild(root)
-			render(
-				<AppContainer settings={{ ...window.hintoSettings }} />,
-				root,
-			)
+			render(<AppContainer opts={window.hintoSettings} />, root)
 		}
 	},
 
