@@ -5,11 +5,11 @@ import { store, persistor } from './store'
 import GlobalStyles from './styles/GlobalStyles'
 import App from './App'
 
-const AppContainer = ({ opts }) => (
+const AppContainer = ({ options }) => (
 	<Provider store={store}>
 		<PersistGate loading={null} persistor={persistor}>
 			<GlobalStyles />
-			<App {...opts} />
+			<App {...options} />
 		</PersistGate>
 	</Provider>
 )

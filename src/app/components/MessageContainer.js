@@ -7,7 +7,7 @@ import { MESSAGE_UNMOUNT } from '../actions'
 import Avatar from './Avatar'
 import Message from './Message'
 
-const MessageContainer = () => {
+const MessageContainer = ({ role, company, logo, color }) => {
 	const dispatch = useDispatch()
 	const message = useSelector(state => state.messages[state.index])
 	const [showTyping, setShowTyping] = useState(false)
@@ -53,9 +53,10 @@ const MessageContainer = () => {
 					item && (
 						<AnimatedContainer key={key} style={props}>
 							<Avatar
-								title="HAY"
-								role="Assistant"
-								color="#EBE5D7"
+								title={company}
+								role={role}
+								color={color}
+								logo={logo}
 								onEnd={typingEnd}
 								typing
 							/>
@@ -67,9 +68,10 @@ const MessageContainer = () => {
 					item && (
 						<AnimatedContainer key={key} style={props}>
 							<Message
-								title="HAY"
-								role="Assistant"
-								color="#EBE5D7"
+								title={company}
+								role={role}
+								color={color}
+								logo={logo}
 								text={message.text}
 								onEnd={messageEnd}
 							/>

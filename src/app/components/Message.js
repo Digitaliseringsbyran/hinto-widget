@@ -5,7 +5,7 @@ import Avatar from './Avatar'
 
 const DELAY = 5000
 
-const Message = ({ onEnd, text, role, title, color }) => {
+const Message = ({ onEnd, text, role, title, color, logo }) => {
 	const [pause, run, running] = usePausableTimeout(
 		() => {
 			onEnd()
@@ -22,6 +22,7 @@ const Message = ({ onEnd, text, role, title, color }) => {
 					stroke={2}
 					running={running}
 					delay={DELAY}
+					logo={logo}
 					role={role}
 					title={title}
 					color={color}

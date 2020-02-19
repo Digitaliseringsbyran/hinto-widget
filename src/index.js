@@ -1,3 +1,4 @@
+import 'whatwg-fetch'
 import { h, render } from 'preact'
 import { TRIGGER } from './constants'
 import AppContainer from './app/AppContainer'
@@ -5,11 +6,23 @@ import AppContainer from './app/AppContainer'
 const triggerEvent = new CustomEvent(TRIGGER)
 
 const Hinto = {
-	init: () => {
+	init: async () => {
 		if (!window.hintoSettings) {
 			console.log('Please define hintoSettings.')
 			return
 		}
+
+		// Request settings based on userId
+		const response = await fetch(
+			`${process.env.API_URL}/init/${window.hintoSettings.userId}`,
+		)
+
+		// Don't do anything if the hinto api isn't working
+		if (!response.ok) {
+			return
+		}
+
+		const res = await response.json()
 
 		// Create element for App to mount on
 		const root = document.createElement('div')
@@ -19,7 +32,12 @@ const Hinto = {
 		// TODO: How to handle non-existing body tags?
 		if (document.body) {
 			document.body.appendChild(root)
-			render(<AppContainer opts={window.hintoSettings} />, root)
+			render(
+				<AppContainer
+					options={{ ...window.hintoSettings, ...res.settings }}
+				/>,
+				root,
+			)
 		}
 	},
 

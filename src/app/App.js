@@ -5,9 +5,22 @@ import { useEffect } from 'preact/hooks'
 import { useInterval } from './hooks/useInterval'
 import MessageContainer from './components/MessageContainer'
 import { TRIGGER } from '../constants'
-import { CLEAR_STATE, FETCH_MESSAGES_SUCCESS, INTERVAL_TICK } from './actions'
+import {
+	CLEAR_STATE,
+	FETCH_MESSAGES_SUCCESS,
+	INTERVAL_TICK,
+	GET_COOLDOWN,
+} from './actions'
 
-const App = ({ userId }) => {
+const App = ({
+	userId,
+	role,
+	color,
+	logo,
+	company,
+	cooldown: userCooldown,
+	...props
+}) => {
 	const dispatch = useDispatch()
 	const { closed, cooldown, runInterval, messages } = useSelector(
 		state => state,
@@ -20,6 +33,13 @@ const App = ({ userId }) => {
 		window.addEventListener(TRIGGER, () => {
 			mount()
 		})
+
+		// Set cooldown in store to userCooldown
+		dispatch({
+			type: GET_COOLDOWN,
+			payload: cooldown,
+		})
+
 		// Clean up
 		return () => {
 			window.removeEventListener(TRIGGER)
@@ -31,10 +51,14 @@ const App = ({ userId }) => {
 		dispatch({ type: CLEAR_STATE })
 		// Return if user has closed widget
 		if (closed || !userId) return
+
+		const path =
+			process.env.NODE_ENV === 'development'
+				? 'test'
+				: `${userId}?path=${window.location.pathname}`
+
 		// Request messages based on path and userId
-		const response = await fetch(
-			`${process.env.API_URL}/messages/${userId}?path=${window.location.pathname}`,
-		)
+		const response = await fetch(`${process.env.API_URL}/messages/${path}`)
 
 		// Don't do anything if the hinto api isn't working
 		if (!response.ok) {
@@ -70,7 +94,14 @@ const App = ({ userId }) => {
 		return null
 	}
 
-	return <MessageContainer />
+	return (
+		<MessageContainer
+			role={role}
+			color={color}
+			logo={logo}
+			company={company}
+		/>
+	)
 }
 
 export default App

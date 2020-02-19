@@ -9,6 +9,7 @@ const Avatar = ({
 	color,
 	title,
 	role,
+	logo,
 	typing,
 	running,
 	delay,
@@ -42,6 +43,7 @@ const Avatar = ({
 				size={size}
 				stroke={stroke}
 				color={color}
+				logo={logo}
 				running={running}
 				delay={delay}
 			/>
