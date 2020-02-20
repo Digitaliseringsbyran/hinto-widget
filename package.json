@@ -1,7 +1,7 @@
 {
-  "name": "widget",
-  "version": "1.0.0",
-  "description": "Hintos widget",
+  "name": "@hinto/widget",
+  "version": "0.0.0",
+  "description": "Hinto widget",
   "main": "dist/index.js",
   "scripts": {
     "build": "NODE_ENV=production webpack",
@@ -12,7 +12,12 @@
     "check-format": "npm run prettier -- --list-different",
     "validate": "npm-run-all --parallel check-format lint build",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "precommit": "lint-staged",
+    "prepare": "npm run build"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "author": "Hinto",
   "license": "ISC",
