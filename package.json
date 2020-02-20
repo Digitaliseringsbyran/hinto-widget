@@ -16,6 +16,9 @@
     "precommit": "lint-staged",
     "prepare": "npm run build"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "author": "Hinto",
   "license": "ISC",
   "devDependencies": {
