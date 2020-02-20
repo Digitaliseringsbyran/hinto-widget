@@ -33,6 +33,7 @@ const GlobalStyles = createGlobalStyle`
 
 	#hinto-widget {
 		position: fixed;
+		z-index: 2147483647;
 		font-family: 'hinto-apercu' !important;
 		left: 0;
 		bottom: 0;
