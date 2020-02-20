@@ -1,23 +1,27 @@
 # Hinto Widget
 
 ```html
-<script
-(function(window, document) {
-	var loader = function() {
-		var callback = function() {
-			window.Hinto.init(window.hintoSettings)
-		}
-		var script = document.createElement('script')
-		var tag = document.getElementsByTagName('script')[0]
-		script.src = 'http://localhost:8080/index.js'
-		script.onload = callback
-		tag.parentNode.insertBefore(script, tag)
+<script>
+	window.hintoSettings = {
+		userId: 'USER ID',
 	}
-
-	window.addEventListener
-		? window.addEventListener('load', loader, false)
-		: window.attachEvent('onload', loader)
-	})(window, document);
+</script>
+<script>
+	;(function(window, document) {
+		var loader = function() {
+			var callback = function() {
+				window.Hinto.init(window.hintoSettings)
+			}
+			var script = document.createElement('script')
+			var tag = document.getElementsByTagName('script')[0]
+			script.src = 'https://unpkg.com/@hinto/widget/dist/index.js'
+			script.onload = callback
+			tag.parentNode.insertBefore(script, tag)
+		}
+		window.addEventListener
+			? window.addEventListener('load', loader, false)
+			: window.attachEvent('onload', loader)
+	})(window, document)
 </script>
 ```
 
