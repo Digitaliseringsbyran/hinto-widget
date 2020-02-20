@@ -9,7 +9,7 @@ import {
 	CLEAR_STATE,
 	FETCH_MESSAGES_SUCCESS,
 	INTERVAL_TICK,
-	GET_COOLDOWN,
+	RECEIVE_USER_COOLDOWN,
 } from './actions'
 
 const App = ({
@@ -34,10 +34,10 @@ const App = ({
 			mount()
 		})
 
-		// Set cooldown in store to userCooldown
+		// Save userCooldown in store
 		dispatch({
-			type: GET_COOLDOWN,
-			payload: cooldown,
+			type: RECEIVE_USER_COOLDOWN,
+			payload: parseInt(userCooldown),
 		})
 
 		// Clean up
@@ -79,6 +79,7 @@ const App = ({
 	useInterval(
 		() => {
 			// Messages are on cooldown, do nothing and keep ticking
+			console.log(cooldown > Date.now() ? 'bigger' : 'smaller')
 			if (cooldown && cooldown > Date.now()) {
 				return
 			}
