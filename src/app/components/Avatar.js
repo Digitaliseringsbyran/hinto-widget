@@ -61,6 +61,10 @@ const Container = styled.div`
 
 const AvatarTitle = styled.span`
 	font-weight: bold;
+	max-width: 140px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
 	font-size: 14px;
 	margin-left: 6px;
 `
@@ -68,6 +72,10 @@ const AvatarTitle = styled.span`
 const AvatarRole = styled.span`
 	font-weight: normal;
 	font-size: 14px;
+	max-width: 80px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
 	margin-left: 4px;
 	margin-right: 10px;
 `
