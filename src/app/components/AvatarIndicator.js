@@ -63,7 +63,6 @@ const Container = styled.div`
 
 const AvatarLogo = styled.div`
 	position: relative;
-	border-radius: 100%;
 	background-image: url('${props => (props.logo ? props.logo : '')}');
 	background-size: 100%; 
 	background-repeat: no-repeat;
