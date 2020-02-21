@@ -40,7 +40,7 @@ const GlobalStyles = createGlobalStyle`
 		perspective: 999px; 
 		width: 100vw;
 		@media screen and (min-width: 400px) {
-			width:340px;
+			width:375px;
 		}
 	}
 `

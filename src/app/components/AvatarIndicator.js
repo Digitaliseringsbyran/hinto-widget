@@ -2,7 +2,7 @@ import { h } from 'preact'
 import styled, { keyframes } from 'styled-components'
 
 const AvatarIndicator = ({
-	size = 20,
+	size = 18,
 	stroke = 3,
 	color,
 	running,
@@ -64,7 +64,7 @@ const Container = styled.div`
 const AvatarLogo = styled.div`
 	position: relative;
 	background-image: url('${props => (props.logo ? props.logo : '')}');
-	background-size: 100%; 
+	background-size: 90%; 
 	background-repeat: no-repeat;
 	background-position: center;
 `

@@ -87,7 +87,6 @@ const AnimatedContainer = styled(animated.div)`
 	bottom: 0;
 	left: 0;
 	padding: 16px 16px 24px 16px;
-	width: 100%;
 	@media screen and (min-width: 400px) {
 		padding: 24px;
 	}
