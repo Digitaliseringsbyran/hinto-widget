@@ -1,6 +1,6 @@
 {
   "name": "@hinto/widget",
-  "version": "0.0.4",
+  "version": "0.0.41",
   "description": "Hinto widget",
   "main": "dist/index.js",
   "scripts": {
