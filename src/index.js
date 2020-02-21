@@ -15,6 +15,7 @@ const Hinto = {
 		// Request settings based on userId
 		const response = await fetch(
 			`${process.env.API_URL}/init/${window.hintoSettings.userId}`,
+			{ credentials: 'include' },
 		)
 
 		// Don't do anything if the hinto api isn't working
