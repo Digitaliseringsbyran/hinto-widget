@@ -58,7 +58,10 @@ const App = ({
 				: `${userId}?path=${window.location.pathname}`
 
 		// Request messages based on path and userId
-		const response = await fetch(`${process.env.API_URL}/messages/${path}`)
+		const response = await fetch(
+			`${process.env.API_URL}/messages/${path}`,
+			{ credentials: 'include' },
+		)
 
 		// Don't do anything if the hinto api isn't working
 		if (!response.ok) {
