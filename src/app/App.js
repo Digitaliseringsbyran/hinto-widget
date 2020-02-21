@@ -8,7 +8,7 @@ import {
 	CLEAR_STATE,
 	FETCH_MESSAGES_SUCCESS,
 	INTERVAL_TICK,
-	RECEIVE_USER_COOLDOWN,
+	RECEIVE_USER_SETTINGS,
 } from './actions'
 
 const App = ({
@@ -28,15 +28,16 @@ const App = ({
 	useEffect(() => {
 		// Mount on page load
 		mount()
+
 		// Listen for trigger events and run mount() again
 		window.addEventListener(TRIGGER, () => {
 			mount()
 		})
 
-		// Save userCooldown in store
+		// We received user settings
 		dispatch({
-			type: RECEIVE_USER_COOLDOWN,
-			payload: parseInt(userCooldown),
+			type: RECEIVE_USER_SETTINGS,
+			payload: { cooldown: parseInt(userCooldown), userId },
 		})
 
 		// Clean up

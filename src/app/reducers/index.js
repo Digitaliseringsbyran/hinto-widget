@@ -3,7 +3,7 @@ import {
 	FETCH_MESSAGES_SUCCESS,
 	INTERVAL_TICK,
 	MESSAGE_UNMOUNT,
-	RECEIVE_USER_COOLDOWN,
+	RECEIVE_USER_SETTINGS,
 } from '../actions'
 
 export const initialState = {
@@ -12,7 +12,10 @@ export const initialState = {
 	index: null,
 	closed: false,
 	cooldown: null,
-	userCooldown: 5000,
+	userSettings: {
+		userId: null,
+		cooldown: 5000,
+	},
 }
 
 export default (state = initialState, action) => {
@@ -25,11 +28,14 @@ export default (state = initialState, action) => {
 			return {
 				...state,
 				runInterval: true,
-				cooldown: Date.now() + state.userCooldown,
+				cooldown: Date.now() + state.userSettings.cooldown,
 			}
 		}
-		case RECEIVE_USER_COOLDOWN: {
-			return { ...state, userCooldown: action.payload }
+		case RECEIVE_USER_SETTINGS: {
+			return {
+				...state,
+				userSettings: { ...state.userSettings, ...action.payload },
+			}
 		}
 		case CLEAR_STATE:
 			return initialState
