@@ -56,5 +56,10 @@ module.exports = {
 	},
 	devServer: {
 		contentBase: path.resolve(__dirname, 'public'),
+		open: 'Google Chrome',
+		overlay: {
+			warnings: true,
+			errors: true,
+		},
 	},
 }
