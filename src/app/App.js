@@ -79,7 +79,6 @@ const App = ({
 	useInterval(
 		() => {
 			// Messages are on cooldown, do nothing and keep ticking
-			console.log(cooldown > Date.now() ? 'bigger' : 'smaller')
 			if (cooldown && cooldown > Date.now()) {
 				return
 			}
