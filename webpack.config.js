@@ -56,5 +56,9 @@ module.exports = {
 	},
 	devServer: {
 		contentBase: path.resolve(__dirname, 'public'),
+		host: 'hinto.test',
+		port: 8080,
+		https: true,
+		disableHostCheck: true,
 	},
 }
