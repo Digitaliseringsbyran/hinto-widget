@@ -1,4 +1,3 @@
-import 'whatwg-fetch'
 import { h } from 'preact'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'preact/hooks'
