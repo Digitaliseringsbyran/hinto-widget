@@ -2,14 +2,17 @@ import 'whatwg-fetch'
 import { h, render } from 'preact'
 import { TRIGGER } from './constants'
 import AppContainer from './app/AppContainer'
+import { isChrome } from './utils/isChrome'
 
 const triggerEvent = new CustomEvent(TRIGGER)
 
 const Hinto = {
 	init: async () => {
+		// Only run widget in Chrome for now
+		if (!isChrome()) return
+
 		if (!window.hintoSettings) {
-			console.log('Please define hintoSettings.')
-			return
+			return console.log('Please define hintoSettings.')
 		}
 
 		// Request settings based on userId
