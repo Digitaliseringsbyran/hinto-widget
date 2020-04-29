@@ -11,12 +11,12 @@ export const isChrome = () => {
 	const isSamsungInternet = winNav.userAgent.match(/SamsungBrowser/i)
 
 	return (
-		isIOSChrome ||
-		(isChromium !== null &&
-			typeof isChromium !== 'undefined' &&
-			vendorName === 'Google Inc.' &&
-			isOpera === false &&
-			isIEedge === false &&
-			!isSamsungInternet)
+		!isIOSChrome &&
+		isChromium !== null &&
+		typeof isChromium !== 'undefined' &&
+		vendorName === 'Google Inc.' &&
+		isOpera === false &&
+		isIEedge === false &&
+		!isSamsungInternet
 	)
 }
