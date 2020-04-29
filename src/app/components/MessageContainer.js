@@ -85,7 +85,7 @@ const MessageContainer = ({ role, company, logo, color }) => {
 const AnimatedContainer = styled(animated.div)`
 	position: absolute;
 	bottom: 0;
-	left: 0;
+	right: 0;
 	padding: 16px 16px 24px 16px;
 	@media screen and (min-width: 400px) {
 		padding: 24px;

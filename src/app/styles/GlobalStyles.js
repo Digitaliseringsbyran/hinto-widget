@@ -35,7 +35,7 @@ const GlobalStyles = createGlobalStyle`
 		position: fixed;
 		z-index: 2147483647;
 		font-family: 'hinto-apercu' !important;
-		left: 0;
+		right: 0;
 		bottom: 0;
 		perspective: 999px; 
 		width: 100vw;
