@@ -1,8 +1,11 @@
-import { MESSAGE_UNMOUNT } from '../actions'
+import { MESSAGE_UNMOUNT, USER_CLOSED_MESSAGE } from '../actions'
 
 export const analytics = store => next => async action => {
 	// Tell the Hinto API that a message was shown on MESSAGE_UNMOUNT.
-	if (action.type === MESSAGE_UNMOUNT) {
+	if (
+		action.type === MESSAGE_UNMOUNT ||
+		action.type === USER_CLOSED_MESSAGE
+	) {
 		const {
 			userSettings: { userId },
 		} = store.getState()
