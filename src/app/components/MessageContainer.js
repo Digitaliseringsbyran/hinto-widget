@@ -3,7 +3,7 @@ import { useEffect, useState } from 'preact/hooks'
 import { useSelector, useDispatch } from 'react-redux'
 import { useTransition, animated } from 'react-spring'
 import styled from 'styled-components'
-import { MESSAGE_UNMOUNT } from '../actions'
+import { MESSAGE_UNMOUNT, USER_CLOSED_MESSAGE } from '../actions'
 import Avatar from './Avatar'
 import Message from './Message'
 
@@ -42,6 +42,11 @@ const MessageContainer = ({ role, company, logo, color }) => {
 		dispatch({ type: MESSAGE_UNMOUNT, payload: message.id })
 	}
 
+	const onClose = () => {
+		setShowMessage(false)
+		dispatch({ type: USER_CLOSED_MESSAGE })
+	}
+
 	if (!message) {
 		return null
 	}
@@ -74,6 +79,7 @@ const MessageContainer = ({ role, company, logo, color }) => {
 								logo={logo}
 								text={message.text}
 								onEnd={messageEnd}
+								onClose={onClose}
 							/>
 						</AnimatedContainer>
 					),

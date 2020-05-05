@@ -6,6 +6,7 @@ import {
 	INTERVAL_TICK,
 	MESSAGE_UNMOUNT,
 	RECEIVE_USER_SETTINGS,
+	USER_CLOSED_MESSAGE,
 } from '../actions'
 
 export const initialState = {
@@ -40,6 +41,9 @@ export default (state = initialState, action) => {
 				...state,
 				userSettings: { ...state.userSettings, ...action.payload },
 			}
+		}
+		case USER_CLOSED_MESSAGE: {
+			return { ...state, closed: true }
 		}
 		case CLEAR_STATE:
 			// Don't clear persisted state
