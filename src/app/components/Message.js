@@ -5,7 +5,7 @@ import Avatar from './Avatar'
 
 const DELAY = 5000
 
-const Message = ({ onEnd, text, role, title, color, logo }) => {
+const Message = ({ onEnd, onClose, text, role, title, color, logo }) => {
 	const [pause, run, running] = usePausableTimeout(
 		() => {
 			onEnd()
@@ -27,7 +27,7 @@ const Message = ({ onEnd, text, role, title, color, logo }) => {
 					title={title}
 					color={color}
 				/>
-				<CloseButton>
+				<CloseButton onClick={onClose}>
 					<svg
 						width="24"
 						height="24"

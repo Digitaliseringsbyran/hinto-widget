@@ -1,14 +1,18 @@
+import uniq from 'lodash.uniq'
+
 import {
 	CLEAR_STATE,
 	FETCH_MESSAGES_SUCCESS,
 	INTERVAL_TICK,
 	MESSAGE_UNMOUNT,
 	RECEIVE_USER_SETTINGS,
+	USER_CLOSED_MESSAGE,
 } from '../actions'
 
 export const initialState = {
 	runInterval: false,
 	messages: [],
+	viewedMessages: [],
 	index: null,
 	closed: false,
 	cooldown: null,
@@ -29,6 +33,7 @@ export default (state = initialState, action) => {
 				...state,
 				runInterval: true,
 				cooldown: Date.now() + state.userSettings.cooldown,
+				viewedMessages: uniq([action.payload, ...state.viewedMessages]),
 			}
 		}
 		case RECEIVE_USER_SETTINGS: {
@@ -37,8 +42,17 @@ export default (state = initialState, action) => {
 				userSettings: { ...state.userSettings, ...action.payload },
 			}
 		}
+		case USER_CLOSED_MESSAGE: {
+			return { ...state, closed: true }
+		}
 		case CLEAR_STATE:
-			return initialState
+			// Don't clear persisted state
+			return {
+				...initialState,
+				viewedMessages: state.viewedMessages,
+				cooldown: state.cooldown,
+				closed: state.closed,
+			}
 		default:
 			return state
 	}

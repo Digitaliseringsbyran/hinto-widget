@@ -21,9 +21,13 @@ const App = ({
 	...props
 }) => {
 	const dispatch = useDispatch()
-	const { closed, cooldown, runInterval, messages } = useSelector(
-		state => state,
-	)
+	const {
+		closed,
+		cooldown,
+		runInterval,
+		messages,
+		viewedMessages,
+	} = useSelector(state => state)
 
 	useEffect(() => {
 		// Mount on page load
@@ -74,7 +78,10 @@ const App = ({
 		if (res.messages && res.messages.length) {
 			return dispatch({
 				type: FETCH_MESSAGES_SUCCESS,
-				payload: res.messages,
+				// Filter out viewed messages
+				payload: res.messages.filter(
+					({ id }) => !viewedMessages.includes(id),
+				),
 			})
 		}
 	}

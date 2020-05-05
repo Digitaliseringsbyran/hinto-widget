@@ -1,14 +1,14 @@
 import { createStore, applyMiddleware } from 'redux'
 import { persistStore, persistReducer } from 'redux-persist'
-import storage from 'redux-persist/lib/storage'
+import storageSession from 'redux-persist/lib/storage/session'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import { analytics } from '../middleware/analytics'
 import reducers from '../reducers'
 
 const persistConfig = {
 	key: 'hinto-widget',
-	storage,
-	whitelist: ['closed', 'cooldown'],
+	storage: storageSession,
+	whitelist: ['closed', 'cooldown', 'viewedMessages'],
 }
 
 const persistedReducer = persistReducer(persistConfig, reducers)
