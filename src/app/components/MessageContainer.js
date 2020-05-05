@@ -39,7 +39,7 @@ const MessageContainer = ({ role, company, logo, color }) => {
 
 	const messageEnd = () => {
 		setShowMessage(false)
-		dispatch({ type: MESSAGE_UNMOUNT })
+		dispatch({ type: MESSAGE_UNMOUNT, payload: message.id })
 	}
 
 	if (!message) {
