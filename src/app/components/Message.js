@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { usePausableTimeout } from '../hooks/usePausableTimeout'
 import Avatar from './Avatar'
 
-const DELAY = 5000
+const DELAY = 10000
 
 const Message = ({ onEnd, onClose, text, role, title, color, logo }) => {
 	const [pause, run, running] = usePausableTimeout(
